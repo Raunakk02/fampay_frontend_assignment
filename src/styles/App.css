@@ -1,8 +1,10 @@
 @import url(Header.css);
 @import url(ScrollContainer.css);
+@import url(HC3.css);
 
 * {    
     margin: 0;
+    box-sizing: border-box;
 }
 
 html, body{
