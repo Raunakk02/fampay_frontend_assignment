@@ -1,0 +1,12 @@
+.card.hc5{
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 20px;
+    background-color: #050402;
+    text-align: center;
+}
+
+.card.hc5 img{
+    border-radius: 20px;
+    width: 100%;
+}
