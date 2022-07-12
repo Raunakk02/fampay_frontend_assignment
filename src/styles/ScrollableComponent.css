@@ -1,0 +1,4 @@
+.scrollable-component {
+    display: flex;
+    overflow-x: scroll;
+}

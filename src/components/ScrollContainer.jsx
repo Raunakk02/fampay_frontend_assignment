@@ -4,6 +4,7 @@ import HC3 from "./HC3";
 import HC5 from "./HC5";
 import HC6 from "./HC6";
 import HC9 from "./HC9";
+import ScrollableComponent from "./ScrollableComponent";
 
 const Components = { HC1, HC3, HC5, HC6, HC9 };
 
@@ -23,14 +24,14 @@ function ScrollContainer() {
 	console.log(cardGroups);
 
 	let content = cardGroups.map((e) => {
+		let isScrollable = e["is_scrollable"] === true;
 		let arr = [];
-
 		e["cards"].forEach((element, index) => {
 			var MyComp = Components[e["design_type"]];
-			arr.push(<MyComp key={index} />);
+			arr.push(<MyComp key={index} isScrollable={isScrollable} />);
 		});
 
-		return arr;
+		return isScrollable ? <ScrollableComponent components={arr} /> : arr;
 	});
 
 	console.log(content);
@@ -43,6 +44,17 @@ function ScrollContainer() {
 			<HC9></HC9>
 			<HC1></HC1> */}
 			{content}
+			{/* <ScrollableComponent
+				components={[
+					<HC3 isScrollable={true} />,
+					<HC3 isScrollable={true} />,
+					<HC3 isScrollable={true} />,
+					<HC3 isScrollable={true} />,
+					<HC3 isScrollable={true} />,
+					<HC3 isScrollable={true} />,
+				]}
+			/>
+			<HC3 /> */}
 		</div>
 	);
 }
