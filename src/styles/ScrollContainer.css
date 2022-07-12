@@ -1,0 +1,7 @@
+.scroll-container {
+    /* height:90vh; */
+    background-color: #F7F6F3;
+    border: 0;
+    border-radius: 12px 12px 0 0;
+    padding: 30px 20px 20px 20px;
+}
