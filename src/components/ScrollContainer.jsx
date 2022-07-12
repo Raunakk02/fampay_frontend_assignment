@@ -1,3 +1,4 @@
+import HC1 from "./HC1";
 import HC3 from "./HC3";
 import HC5 from "./HC5";
 import HC6 from "./HC6";
@@ -10,6 +11,7 @@ function ScrollContainer() {
 			<HC6></HC6>
 			<HC5></HC5>
 			<HC9></HC9>
+			<HC1></HC1>
 		</div>
 	);
 }
