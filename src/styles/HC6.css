@@ -1,0 +1,23 @@
+.card.hc6 {
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items : center;
+}
+
+.card.hc6 .leading-title {
+    display: flex;
+    align-items: center;
+}
+
+.card.hc6 .leading-title img {
+    margin-right: 15px;
+}
+
+.card.hc6 h1 {
+    font-size: 3rem;
+}
