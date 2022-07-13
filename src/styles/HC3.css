@@ -1,14 +1,20 @@
 .card.hc3{
     width: 100%;
-    height: 350px;
+    height: 500px;
     margin: 10px 0;
     padding: 30px;
     border-radius: 20px;
     background-color: #454AA6;
+    background-size: contain;
+    background-repeat: no-repeat;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.card.hc3 h3 {
+    margin-top: 150px;
 }
 
 .card.hc3 .cta{

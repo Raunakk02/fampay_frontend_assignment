@@ -28,7 +28,9 @@ function ScrollContainer() {
 		let arr = [];
 		e["cards"].forEach((element, index) => {
 			var MyComp = Components[e["design_type"]];
-			arr.push(<MyComp key={index} isScrollable={isScrollable} />);
+			arr.push(
+				<MyComp key={index} isScrollable={isScrollable} data={element} />
+			);
 		});
 
 		return isScrollable ? <ScrollableComponent components={arr} /> : arr;
