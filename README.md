@@ -1,5 +1,7 @@
 # FamPay Frontend Assignment
 
+### Deployed Link: [https://62cefbe1e731571474aa412c--fampay-frontent-raunak.netlify.app/](https://62cefbe1e731571474aa412c--fampay-frontent-raunak.netlify.app/)
+
 A Frontend App ( Mobile View ) to display contextual cards developed using ReactJS framework. The cards are displayed dynamically based on the response from the API. This project implement features like Pull-to-refresh, remind later, dismiss now, and a lot more...
 
 ## Commands to run the project
