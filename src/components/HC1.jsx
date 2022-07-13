@@ -15,10 +15,7 @@ function HC1(props) {
 			}}
 		>
 			<div className="leading-container">
-				<img
-					src="https://westeros-staging.s3.amazonaws.com/media/images/generic/4ce76db9e755497f8d176764b6d590ba.png"
-					alt="user-icon"
-				/>
+				<img src={props.data.icon.image_url ?? ""} alt="user-icon" />
 				<div className="title-subtitle">
 					<h4>
 						{getText(
