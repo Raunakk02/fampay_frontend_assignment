@@ -42,7 +42,6 @@ function ScrollContainer() {
 		fetch("https://run.mocky.io/v3/4d8db890-5327-4c69-a3ef-b4f5f5225d17")
 			.then((res) => res.json())
 			.then((data) => {
-				// console.log(data, Date.now());
 				setCardGroups(data["card_groups"]);
 			});
 	}
@@ -63,9 +62,6 @@ function ScrollContainer() {
 		getData();
 		setDismissedNamesHandler();
 	}, []);
-
-	// console.clear();
-	console.log(cardGroups);
 
 	let content = cardGroups.map((e) => {
 		let isScrollable = e["is_scrollable"] === true;
@@ -95,8 +91,6 @@ function ScrollContainer() {
 			<NonScrollableComponent components={arr} />
 		);
 	});
-
-	console.log(content);
 
 	return (
 		<PullToRefresh onRefresh={handleRefresh}>
