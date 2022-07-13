@@ -48,7 +48,7 @@ function HC3(props) {
 				<div
 					className="button"
 					onClick={() => {
-						console.log("reminded!");
+						props.handleRemind(props.data.name);
 					}}
 				>
 					<img src={remind} alt="remind" />
@@ -57,7 +57,7 @@ function HC3(props) {
 				<div
 					className="button"
 					onClick={() => {
-						console.log("dismissed!");
+						props.handleDismiss(props.data.name);
 					}}
 				>
 					<img src={dismiss} alt="dismiss" />

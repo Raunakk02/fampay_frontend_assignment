@@ -12,6 +12,31 @@ const Components = { HC1, HC3, HC5, HC6, HC9 };
 
 function ScrollContainer() {
 	let [cardGroups, setCardGroups] = useState([]);
+	let [remindedNames, setRemindedNames] = useState([]);
+	let [dismissedNames, setDismissedNames] = useState([]);
+
+	function handleRemind(name) {
+		setRemindedNames((prev) => {
+			if (prev.includes(name)) {
+				return prev;
+			}
+			return [...prev, name];
+		});
+	}
+
+	function handleDismiss(name) {
+		if (!dismissedNames.includes(name))
+			window.localStorage.setItem(
+				"dismissedNames",
+				JSON.stringify([...dismissedNames, name])
+			);
+		setDismissedNames((prev) => {
+			if (prev.includes(name)) {
+				return prev;
+			}
+			return [...prev, name];
+		});
+	}
 
 	function getData() {
 		fetch("https://run.mocky.io/v3/4d8db890-5327-4c69-a3ef-b4f5f5225d17")
@@ -28,11 +53,18 @@ function ScrollContainer() {
 		}, 1000);
 	}
 
+	function setDismissedNamesHandler() {
+		let localDismissedNames = window.localStorage.getItem("dismissedNames");
+		let parsedNames = JSON.parse(localDismissedNames) ?? [];
+		setDismissedNames(parsedNames);
+	}
+
 	useEffect(() => {
 		getData();
+		setDismissedNamesHandler();
 	}, []);
 
-	console.clear();
+	// console.clear();
 	console.log(cardGroups);
 
 	let content = cardGroups.map((e) => {
@@ -40,15 +72,21 @@ function ScrollContainer() {
 		let arr = [];
 		e["cards"].forEach((cardData, index) => {
 			var MyComp = Components[e["design_type"]];
-			arr.push(
-				<MyComp
-					key={index}
-					isScrollable={isScrollable}
-					addRightMargin={e["cards"].length > 1}
-					data={cardData}
-					height={e["height"]}
-				/>
-			);
+			if (
+				!remindedNames?.includes(cardData["name"]) &&
+				!dismissedNames?.includes(cardData["name"])
+			)
+				arr.push(
+					<MyComp
+						key={index}
+						isScrollable={isScrollable}
+						addRightMargin={e["cards"].length > 1}
+						data={cardData}
+						height={e["height"]}
+						handleRemind={handleRemind}
+						handleDismiss={handleDismiss}
+					/>
+				);
 		});
 
 		return isScrollable ? (
