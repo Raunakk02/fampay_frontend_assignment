@@ -1,16 +1,28 @@
+.back-container{
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
 .card.hc3{
     width: 100%;
     height: 500px;
     margin: 10px 0;
     padding: 30px;
     border-radius: 20px;
-    background-color: #454AA6;
+    background-color: white;
     background-size: contain;
     background-repeat: no-repeat;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: absolute;
+    z-index: 1;
 }
 
 .card.hc3 h3 {
@@ -23,4 +35,20 @@
     color: white;
     padding: 15px 20px;
     border-radius: 10px;
+}
+
+.hc3-buttons{
+    height: 100%;
+    display: flex;
+    padding-left: 20px;
+    flex-direction: column;
+    align-items:center ;
+    justify-content: space-around;
+}
+
+.hc3-buttons .button {
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px 10px;
+    background-color: #F7F6F3;
 }

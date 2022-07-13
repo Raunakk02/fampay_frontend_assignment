@@ -1,12 +1,24 @@
+import { useState } from "react";
+import { useLongPress } from "use-long-press";
+import dismiss from "../assets/images/dismiss.png";
+import remind from "../assets/images/remind.png";
 import getText from "../helper";
 
 function HC3(props) {
-	const cardStyle = {
-		margin: props.addRightMargin ? "10px 5px 10px 0" : "10px 0",
+	let [marginLeft, setMarginLeft] = useState("0");
+
+	let cardStyle = {
+		margin: props.addRightMargin ? "0 5px 0 0" : "0px 0",
 		minWidth: props.isScrollable ? "90%" : "",
 		backgroundColor: props.data.bg_color,
 		backgroundImage: `url(${props.data.bg_image.image_url})`,
+		marginLeft: marginLeft,
+		transition: "1s all ease",
 	};
+
+	const bind = useLongPress(() => {
+		setMarginLeft("150px");
+	});
 
 	function getCTAs(cta) {
 		return cta.map((el) => {
@@ -31,26 +43,49 @@ function HC3(props) {
 	}
 
 	return (
-		<div
-			className="card hc3"
-			style={cardStyle}
-			onClick={() => {
-				window.location.assign(props.data.url);
-			}}
-		>
-			<h3>
-				{getText(
-					props.data.formatted_title.entities,
-					props.data.formatted_title.text.split("{}")
-				) ?? props.data.title}
-			</h3>
-			<h5>
-				{getText(
-					props.data.formatted_description.entities,
-					props.data.formatted_description.text.split("{}")
-				) ?? props.data.title}
-			</h5>
-			{getCTAs(props.data.cta)}
+		<div className="back-container">
+			<div className="hc3-buttons">
+				<div
+					className="button"
+					onClick={() => {
+						console.log("reminded!");
+					}}
+				>
+					<img src={remind} alt="remind" />
+					<p>remind later</p>
+				</div>
+				<div
+					className="button"
+					onClick={() => {
+						console.log("dismissed!");
+					}}
+				>
+					<img src={dismiss} alt="dismiss" />
+					<p>dismiss now</p>
+				</div>
+			</div>
+			<div
+				className="card hc3"
+				style={cardStyle}
+				onClick={() => {
+					window.location.assign(props.data.url);
+				}}
+				{...bind()}
+			>
+				<h3>
+					{getText(
+						props.data.formatted_title.entities,
+						props.data.formatted_title.text.split("{}")
+					) ?? props.data.title}
+				</h3>
+				<h5>
+					{getText(
+						props.data.formatted_description.entities,
+						props.data.formatted_description.text.split("{}")
+					) ?? props.data.title}
+				</h5>
+				{getCTAs(props.data.cta)}
+			</div>
 		</div>
 	);
 }
