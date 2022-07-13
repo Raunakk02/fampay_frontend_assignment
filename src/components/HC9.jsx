@@ -4,7 +4,13 @@ function HC9(props) {
 		// maxWidth: `{props.data.bg_image.aspect_ratio * 100}px`,
 	};
 	return (
-		<div className="card hc9" style={cardStyle}>
+		<div
+			className="card hc9"
+			style={cardStyle}
+			onClick={() => {
+				window.location.assign(props.data.url);
+			}}
+		>
 			<img src={props.data.bg_image.image_url} alt={props.data.name} />
 		</div>
 	);

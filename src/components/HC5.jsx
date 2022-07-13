@@ -5,10 +5,14 @@ function HC5(props) {
 		backgroundColor: props.data.bg_color,
 	};
 	return (
-		<div className="card hc5" style={cardStyle}>
-			<a href={props.data.url}>
-				<img src={props.data.bg_image.image_url} alt="img" />
-			</a>
+		<div
+			className="card hc5"
+			style={cardStyle}
+			onClick={() => {
+				window.location.assign(props.data.url);
+			}}
+		>
+			<img src={props.data.bg_image.image_url} alt="img" />
 		</div>
 	);
 }

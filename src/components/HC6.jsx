@@ -7,7 +7,13 @@ function HC6(props) {
 	};
 
 	return (
-		<div className="card hc6" style={cardStyle}>
+		<div
+			className="card hc6"
+			style={cardStyle}
+			onClick={() => {
+				window.location.assign(props.data.url);
+			}}
+		>
 			<div className="leading-title">
 				<img src={props.data.icon.image_url} alt="user-icon" />
 				<h3>
