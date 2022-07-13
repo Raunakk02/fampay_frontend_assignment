@@ -1,8 +1,5 @@
 function HC9(props) {
-	const cardStyle = {
-		// minWidth: `{props.data.bg_image.aspect_ratio * 100}px`,
-		// maxWidth: `{props.data.bg_image.aspect_ratio * 100}px`,
-	};
+	const cardStyle = {};
 	return (
 		<div
 			className="card hc9"

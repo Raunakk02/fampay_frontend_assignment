@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import PullToRefresh from "react-simple-pull-to-refresh";
 import HC1 from "./HC1";
 import HC3 from "./HC3";
 import HC5 from "./HC5";
 import HC6 from "./HC6";
 import HC9 from "./HC9";
+import NonScrollableComponent from "./NonScrollableComponent";
 import ScrollableComponent from "./ScrollableComponent";
 
 const Components = { HC1, HC3, HC5, HC6, HC9 };
@@ -11,13 +13,23 @@ const Components = { HC1, HC3, HC5, HC6, HC9 };
 function ScrollContainer() {
 	let [cardGroups, setCardGroups] = useState([]);
 
-	useEffect(() => {
+	function getData() {
 		fetch("https://run.mocky.io/v3/4d8db890-5327-4c69-a3ef-b4f5f5225d17")
 			.then((res) => res.json())
 			.then((data) => {
-				// console.log(data);
+				// console.log(data, Date.now());
 				setCardGroups(data["card_groups"]);
 			});
+	}
+
+	function handleRefresh() {
+		setTimeout(() => {
+			window.location.reload();
+		}, 1000);
+	}
+
+	useEffect(() => {
+		getData();
 	}, []);
 
 	console.clear();
@@ -26,38 +38,32 @@ function ScrollContainer() {
 	let content = cardGroups.map((e) => {
 		let isScrollable = e["is_scrollable"] === true;
 		let arr = [];
-		e["cards"].forEach((element, index) => {
+		e["cards"].forEach((cardData, index) => {
 			var MyComp = Components[e["design_type"]];
 			arr.push(
-				<MyComp key={index} isScrollable={isScrollable} data={element} />
+				<MyComp
+					key={index}
+					isScrollable={isScrollable}
+					addRightMargin={e["cards"].length > 1}
+					data={cardData}
+					height={e["height"]}
+				/>
 			);
 		});
 
-		return isScrollable ? <ScrollableComponent components={arr} /> : arr;
+		return isScrollable ? (
+			<ScrollableComponent components={arr} />
+		) : (
+			<NonScrollableComponent components={arr} />
+		);
 	});
 
 	console.log(content);
 
 	return (
-		<div className="scroll-container">
-			{/* <HC3></HC3>
-			<HC6></HC6>
-			<HC5></HC5>
-			<HC9></HC9>
-			<HC1></HC1> */}
-			{content}
-			{/* <ScrollableComponent
-				components={[
-					<HC3 isScrollable={true} />,
-					<HC3 isScrollable={true} />,
-					<HC3 isScrollable={true} />,
-					<HC3 isScrollable={true} />,
-					<HC3 isScrollable={true} />,
-					<HC3 isScrollable={true} />,
-				]}
-			/>
-			<HC3 /> */}
-		</div>
+		<PullToRefresh onRefresh={handleRefresh}>
+			<div className="scroll-container">{content}</div>
+		</PullToRefresh>
 	);
 }
 

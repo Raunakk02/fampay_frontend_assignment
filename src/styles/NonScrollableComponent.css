@@ -1,0 +1,4 @@
+.non-scrollable-component {
+    display: flex;
+    flex-wrap: nowrap;
+}

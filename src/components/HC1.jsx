@@ -2,7 +2,7 @@ import getText from "../helper";
 
 function HC1(props) {
 	const cardStyle = {
-		margin: props.isScrollable ? "10px 5px 10px 0" : "10px 0",
+		margin: props.addRightMargin ? "10px 5px 10px 0" : "10px 0",
 		minWidth: props.isScrollable ? "250px" : "",
 		backgroundColor: props.data.bg_color,
 	};
